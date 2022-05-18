@@ -9,6 +9,8 @@ public class Car {
 	private String modified;
 	private Integer id;
 	private Date createdDate;
+	private Date modifiedDate;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -33,7 +35,6 @@ public class Car {
 		this.modifiedDate = modifiedDate;
 	}
 
-	private Date modifiedDate;
 	
 	public String getModified() {
 		return modified;

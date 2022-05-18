@@ -36,6 +36,12 @@ public class CarController {
 		return new ResponseEntity<Car>(carService.addCar(car), HttpStatus.OK);
 	}
 	
+	@PostMapping("/update")
+	public ResponseEntity<Car> update(@RequestBody Car car) {
+		LOGGER.info("Car updated in the database.");
+		return new ResponseEntity<Car>(carService.updateCar(car), HttpStatus.OK);
+	}
+	
 	@GetMapping("/getlist")
 	public ResponseEntity<?> getList(){
 		LOGGER.info("Updated the car list!");
@@ -64,7 +70,8 @@ public class CarController {
 	@GetMapping("/getcompany")
 	public ResponseEntity<?> get(@RequestParam String company){
 		Car car = carService.get(company);
-		LOGGER.info("Car Company is available : "+car.getName());
+		car.setModified("Changed");
+		LOGGER.info("Car Company available is : "+car.getName());
 		return new ResponseEntity<Car>(car, car==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
 		
 	}
@@ -72,7 +79,7 @@ public class CarController {
 	@GetMapping("/getbycompany/{company}")
 	public ResponseEntity<?> getbycompany(@PathVariable(required=true) String company){
 		Car car = carService.get(company);
-		LOGGER.info("Car Company is available : "+car.getName());
+		LOGGER.info("Car Company available is : "+car.getName());
 		return new ResponseEntity<Car>(car, car==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
 		
 	}

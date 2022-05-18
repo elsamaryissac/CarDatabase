@@ -3,6 +3,7 @@ package com.elsa.demo.springboot.services.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,22 @@ public class CarServiceImpl implements CarService {
 	public Car get(String company) {
 		return carDatabase.get(company);
 		
+	}
+
+	@Override
+	public Car updateCar(Car car) {
+		List<Car> carList=getCarList();
+		Car selectedCar=get(car.getId());
+		selectedCar.setModifiedDate(new Date());
+		if(!StringUtils.isEmpty(car.getName())) {
+			selectedCar.setName(car.getName());
+		}
+		if(!StringUtils.isEmpty(car.getCompany())) {
+			selectedCar.setCompany(car.getCompany());
+		}
+		if(car.getYear()!=null) {
+			selectedCar.setYear(car.getYear());
+		}
+		return car;
 	}
 }

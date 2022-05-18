@@ -9,5 +9,6 @@ public interface CarService {
 	public List<Car> getCarList();
 	public Car get(Integer id);
 	public Car get(String company);
+	public Car updateCar(Car car);
 	
 }
