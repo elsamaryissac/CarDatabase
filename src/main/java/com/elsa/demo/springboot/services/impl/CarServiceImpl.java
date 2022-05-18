@@ -66,4 +66,14 @@ public class CarServiceImpl implements CarService {
 		}
 		return car;
 	}
+
+	@Override
+	public Car deleteCar(Car car) {
+		Car carToBeDeleted=get(car.getId());
+			carDatabase.delete(carToBeDeleted);
+			carDatabase.updateCarList();
+		return car;
+	}
+	
+	
 }

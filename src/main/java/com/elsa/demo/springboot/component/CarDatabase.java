@@ -1,8 +1,10 @@
 package com.elsa.demo.springboot.component;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.elsa.demo.springboot.model.Car;
@@ -10,7 +12,7 @@ import com.elsa.demo.springboot.model.Car;
 @Component
 public class CarDatabase {
 	private List<Car> carList;
-
+	
 	public List<Car> getCarList() {
 		return carList;
 	}
@@ -24,7 +26,23 @@ public class CarDatabase {
 			this.carList = new ArrayList<Car>();
 		this.carList.add(car);
 	}
+	
+	public void delete(Car car) {
+		this.carList.remove(car);
+	}
 
+	public List<Car> updateCarList() {
+		Integer newCount = 1;
+		if (getCarList() != null) {
+			newCount = getCarList().size();
+			
+			for(Car c: getCarList()) {
+				c.setId(newCount);
+	    	}
+		}
+		return carList;
+	}
+	
 	public Car get(Integer id) {
      Car car = null;
      if(getCarList() != null) {

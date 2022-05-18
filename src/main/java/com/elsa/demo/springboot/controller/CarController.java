@@ -42,6 +42,12 @@ public class CarController {
 		return new ResponseEntity<Car>(carService.updateCar(car), HttpStatus.OK);
 	}
 	
+	@PostMapping("/delete")
+	public ResponseEntity<Car> delete(@RequestBody Car car) {
+		LOGGER.info("Car deleted from the database.");
+		return new ResponseEntity<Car>(carService.deleteCar(car), HttpStatus.OK);
+	}
+	
 	@GetMapping("/getlist")
 	public ResponseEntity<?> getList(){
 		LOGGER.info("Updated the car list!");
