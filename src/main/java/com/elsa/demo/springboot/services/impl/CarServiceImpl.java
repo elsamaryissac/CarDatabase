@@ -2,6 +2,8 @@ package com.elsa.demo.springboot.services.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ public class CarServiceImpl implements CarService {
 		car.setCreatedDate(new Date());
 		car.setModifiedDate(new Date());
 		car.setId(getCount());
+		car.setActive(true);
 		carDatabase.add(car);
 		return car;
 	}
@@ -29,6 +32,11 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public List<Car> getCarList() {
 		return carDatabase.getCarList();
+	}
+	
+	@Override
+	public List<Car> getActiveCarsList() {
+		return carDatabase.getCarList().stream().filter(c->c.isActive()).collect(Collectors.toList());
 	}
 
 	private Integer getCount() {
@@ -52,7 +60,6 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public Car updateCar(Car car) {
-		List<Car> carList=getCarList();
 		Car selectedCar=get(car.getId());
 		selectedCar.setModifiedDate(new Date());
 		if(!StringUtils.isEmpty(car.getName())) {
@@ -75,5 +82,11 @@ public class CarServiceImpl implements CarService {
 		return car;
 	}
 	
-	
+	@Override
+	public Car disableCar(Car car) {
+		Car carToBeDeleted=get(car.getId());
+		carToBeDeleted.setActive(false);
+			carDatabase.updateCarList();
+		return car;
+	}
 }

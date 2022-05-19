@@ -45,11 +45,20 @@ public class CarController {
 	@PostMapping("/delete")
 	public ResponseEntity<Car> delete(@RequestBody Car car) {
 		LOGGER.info("Car deleted from the database.");
-		return new ResponseEntity<Car>(carService.deleteCar(car), HttpStatus.OK);
+		return new ResponseEntity<Car>(carService.disableCar(car), HttpStatus.OK);
 	}
 	
 	@GetMapping("/getlist")
 	public ResponseEntity<?> getList(){
+		LOGGER.info("Updated the car list!");
+		carService.getCarList();
+		//return new ResponseEntity<>("List is updated!", HttpStatus.OK);
+		return new ResponseEntity<List<Car>>(carService.getActiveCarsList(), HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/getall")
+	public ResponseEntity<?> getAllCars(){
 		LOGGER.info("Updated the car list!");
 		carService.getCarList();
 		//return new ResponseEntity<>("List is updated!", HttpStatus.OK);

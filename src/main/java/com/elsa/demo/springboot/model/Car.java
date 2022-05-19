@@ -10,7 +10,16 @@ public class Car {
 	private Integer id;
 	private Date createdDate;
 	private Date modifiedDate;
+	private boolean active;
 	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -72,7 +81,7 @@ public class Car {
 	@Override
 	public String toString() {
 		return "Car [name=" + name + ", company=" + company + ", year=" + year + ", modified=" + modified + ", id=" + id
-				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + "]";
+				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", active=" + active + "]";
 	}
 
 	

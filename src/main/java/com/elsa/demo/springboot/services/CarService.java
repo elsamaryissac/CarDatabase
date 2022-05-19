@@ -11,5 +11,7 @@ public interface CarService {
 	public Car get(String company);
 	public Car updateCar(Car car);
 	public Car deleteCar(Car car);
+	public Car disableCar(Car car);
+	public List<Car> getActiveCarsList();
 	
 }

@@ -34,10 +34,11 @@ public class CarDatabase {
 	public List<Car> updateCarList() {
 		Integer newCount = 1;
 		if (getCarList() != null) {
-			newCount = getCarList().size();
+		//	newCount = getCarList().size();
 			
 			for(Car c: getCarList()) {
 				c.setId(newCount);
+				newCount++;
 	    	}
 		}
 		return carList;
