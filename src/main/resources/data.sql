@@ -1,0 +1,3 @@
+INSERT INTO CAR (name, company, year, modified, createddate, modifieddate, active) VALUES ('nano', 'tata', 2020, 'ELSA', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), TRUE)
+INSERT INTO CAR (name, company, year, modified, createddate, modifieddate, active) VALUES ('I10', 'hyundai', 2020, 'ELSA', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), TRUE)
+INSERT INTO CAR (name, company, year, modified, createddate, modifieddate, active) VALUES ('amaze', 'honda', 2020, 'ELSA', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), TRUE)

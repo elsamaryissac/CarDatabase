@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS CAR;
+CREATE TABLE CAR (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR (50),
+company VARCHAR (50),
+year INT,
+modified VARCHAR (50),
+createddate TIMESTAMP,
+modifieddate TIMESTAMP,
+active BOOLEAN)
+
