@@ -5,7 +5,7 @@ name VARCHAR (50),
 company VARCHAR (50),
 year INT,
 modified VARCHAR (50),
-createddate TIMESTAMP,
-modifieddate TIMESTAMP,
+createdDate TIMESTAMP,
+modifiedDate TIMESTAMP,
 active BOOLEAN)
 

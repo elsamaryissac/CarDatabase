@@ -51,7 +51,6 @@ public class CarController {
 	@GetMapping("/getlist")
 	public ResponseEntity<?> getList(){
 		LOGGER.info("Updated the car list!");
-		carService.getCarList();
 		//return new ResponseEntity<>("List is updated!", HttpStatus.OK);
 		return new ResponseEntity<List<Car>>(carService.getActiveCarsList(), HttpStatus.OK);
 		
@@ -60,7 +59,6 @@ public class CarController {
 	@GetMapping("/getall")
 	public ResponseEntity<?> getAllCars(){
 		LOGGER.info("Updated the car list!");
-		carService.getCarList();
 		//return new ResponseEntity<>("List is updated!", HttpStatus.OK);
 		return new ResponseEntity<List<Car>>(carService.getCarList(), HttpStatus.OK);
 		
