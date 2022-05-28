@@ -79,6 +79,13 @@ public class CarController {
 		return new ResponseEntity<Car>(car, car==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
 		
 	}
+	@GetMapping("/getbyname/{name}")
+	public ResponseEntity<?> getbyname(@PathVariable(required=true) String name){
+		List<Car> carList = carService.getByName(name);
+		LOGGER.info("Get Car by id");
+		return new ResponseEntity<List<Car>>(carList, carList==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
+		
+	}
 	
 	@GetMapping("/getcompany")
 	public ResponseEntity<?> get(@RequestParam String company){

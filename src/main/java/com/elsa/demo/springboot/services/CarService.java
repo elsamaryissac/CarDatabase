@@ -13,5 +13,5 @@ public interface CarService {
 	public Car deleteCar(Car car);
 	public Car disableCar(Car car);
 	public List<Car> getActiveCarsList();
-	
+	public List<Car> getByName(String name);
 }

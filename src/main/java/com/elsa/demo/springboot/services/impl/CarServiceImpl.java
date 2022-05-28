@@ -17,8 +17,8 @@ import com.elsa.demo.springboot.services.CarService;
 
 @Service
 public class CarServiceImpl implements CarService {
-    @Autowired
-	private CarDatabase carDatabase;
+//    @Autowired
+//	private CarDatabase carDatabase;
     @Autowired 
     private CarRepository carRepository;
     
@@ -40,7 +40,7 @@ public class CarServiceImpl implements CarService {
 	
 	@Override
 	public List<Car> getActiveCarsList() {
-		return carDatabase.getCarList().stream().filter(c->c.isActive()).collect(Collectors.toList());
+		return getCarList().stream().filter(c->c.isActive()).collect(Collectors.toList());
 	}
 
 	private Integer getCount() {
@@ -53,18 +53,25 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public Car get(Integer id) {
-		return mapCar(carRepository.findById(id).orElse(null));
+		return mapCar(findCarEntity(id));
 		
 	}
 	
-	public Car get(String company) {
-		return carDatabase.get(company);
-		
+	private com.elsa.demo.springboot.database.entity.Car findCarEntity(Integer id){
+		return carRepository.findById(id).orElse(null);
 	}
+	
+//	public Car get(String company) {
+//		return carDatabase.get(company);
+//		
+//	}
 
 	@Override
 	public Car updateCar(Car car) {
-		Car selectedCar=get(car.getId());
+		com.elsa.demo.springboot.database.entity.Car selectedCar=findCarEntity(car.getId());
+		if(selectedCar == null) {
+			return null;
+		}
 		selectedCar.setModifiedDate(new Date());
 		if(!StringUtils.isEmpty(car.getName())) {
 			selectedCar.setName(car.getName());
@@ -75,23 +82,28 @@ public class CarServiceImpl implements CarService {
 		if(car.getYear()!=null) {
 			selectedCar.setYear(car.getYear());
 		}
-		return car;
+		carRepository.save(selectedCar);
+		return mapCar(selectedCar);
 	}
 
 	@Override
 	public Car deleteCar(Car car) {
-		Car carToBeDeleted=get(car.getId());
-			carDatabase.delete(carToBeDeleted);
-			carDatabase.updateCarList();
+//		Car carToBeDeleted=get(car.getId());
+//			carDatabase.delete(carToBeDeleted);
+//			carDatabase.updateCarList();
 		return car;
 	}
 	
 	@Override
 	public Car disableCar(Car car) {
-		Car carToBeDeleted=get(car.getId());
-		carToBeDeleted.setActive(false);
-			carDatabase.updateCarList();
-		return car;
+		com.elsa.demo.springboot.database.entity.Car selectedCar=findCarEntity(car.getId());
+		if(selectedCar == null) {
+			return null;
+		}
+		selectedCar.setModifiedDate(new Date());
+		selectedCar.setActive(false);
+		carRepository.save(selectedCar);
+		return mapCar(selectedCar);
 	}
 	
 	private List<Car> getCarList(List<com.elsa.demo.springboot.database.entity.Car> carList){
@@ -110,5 +122,17 @@ public class CarServiceImpl implements CarService {
 		return ModelTransformer.toCarEntity(car);
 		
 	}
+
+	@Override
+	public Car get(String company) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Car> getByName(String name) {
+		return getCarList((List<com.elsa.demo.springboot.database.entity.Car>) carRepository.findByName(name));
+	}
+	
 	
 }
