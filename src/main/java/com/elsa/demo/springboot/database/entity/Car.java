@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +13,7 @@ import javax.persistence.Table;
 @Table
 public class Car {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Integer id;
 	@Column
@@ -21,9 +24,9 @@ public class Car {
 	private Integer year;
 	@Column
 	private String modified;
-	@Column
+	@Column(name="createddate")
 	private Date createdDate;
-	@Column
+	@Column(name="modifieddate")
 	private Date modifiedDate;
 	@Column
 	private boolean active;

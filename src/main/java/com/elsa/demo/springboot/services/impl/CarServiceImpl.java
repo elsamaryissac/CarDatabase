@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.elsa.demo.springboot.component.CarDatabase;
+import com.elsa.demo.springboot.database.common.ModelTransformer;
 import com.elsa.demo.springboot.database.repository.CarRepository;
 import com.elsa.demo.springboot.model.Car;
 import com.elsa.demo.springboot.services.CarService;
@@ -25,10 +26,9 @@ public class CarServiceImpl implements CarService {
 	public Car addCar(Car car) {
 		car.setCreatedDate(new Date());
 		car.setModifiedDate(new Date());
-		car.setId(getCount());
 		car.setActive(true);
-		carDatabase.add(car);
-		return car;
+		com.elsa.demo.springboot.database.entity.Car carEntity = carRepository.save(mapCarToEntity(car));
+		return mapCar(carEntity);
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public Car get(Integer id) {
-		return carDatabase.get(id);
+		return mapCar(carRepository.findById(id).orElse(null));
 		
 	}
 	
@@ -103,15 +103,12 @@ public class CarServiceImpl implements CarService {
 	}
 	
 	private Car mapCar(com.elsa.demo.springboot.database.entity.Car car) {
-		Car newCar = new Car();
-		newCar.setName(car.getName());
-		newCar.setCompany(car.getCompany());
-		newCar.setModified(car.getCompany());
-		newCar.setYear(car.getYear());
-		newCar.setCreatedDate(car.getCreatedDate());
-		newCar.setModifiedDate(car.getModifiedDate());
-		newCar.setActive(car.isActive());
-		return newCar;
+		return ModelTransformer.toCarModel(car);
+	}
+	
+	private com.elsa.demo.springboot.database.entity.Car mapCarToEntity(Car car) {
+		return ModelTransformer.toCarEntity(car);
+		
 	}
 	
 }

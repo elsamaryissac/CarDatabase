@@ -50,7 +50,7 @@ public class CarController {
 	
 	@GetMapping("/getlist")
 	public ResponseEntity<?> getList(){
-		LOGGER.info("Updated the car list!");
+		LOGGER.info("Get all the active cars.");
 		//return new ResponseEntity<>("List is updated!", HttpStatus.OK);
 		return new ResponseEntity<List<Car>>(carService.getActiveCarsList(), HttpStatus.OK);
 		
@@ -58,7 +58,7 @@ public class CarController {
 	
 	@GetMapping("/getall")
 	public ResponseEntity<?> getAllCars(){
-		LOGGER.info("Updated the car list!");
+		LOGGER.info("Get all the cars!");
 		//return new ResponseEntity<>("List is updated!", HttpStatus.OK);
 		return new ResponseEntity<List<Car>>(carService.getCarList(), HttpStatus.OK);
 		
@@ -67,7 +67,7 @@ public class CarController {
 	@GetMapping("/get")
 	public ResponseEntity<?> get(@RequestParam Integer id){
 		Car car = carService.get(id);
-		LOGGER.info("Car available with this id is : "+car.getName());
+		LOGGER.info("Get Car by id");
 		return new ResponseEntity<Car>(car, car==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
 		
 	}
@@ -75,7 +75,7 @@ public class CarController {
 	@GetMapping("/getbyid/{id}")
 	public ResponseEntity<?> getbyid(@PathVariable(required=true) Integer id){
 		Car car = carService.get(id);
-		LOGGER.info("Car available with this id is : "+car.getName());
+		LOGGER.info("Get Car by id");
 		return new ResponseEntity<Car>(car, car==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
 		
 	}
