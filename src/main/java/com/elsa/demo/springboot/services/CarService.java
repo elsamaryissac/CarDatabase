@@ -14,4 +14,5 @@ public interface CarService {
 	public Car disableCar(Car car);
 	public List<Car> getActiveCarsList();
 	public List<Car> getByName(String name);
+	public List<Car> getListByCompanyAndYear(String company, Integer year);
 }

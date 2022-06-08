@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.elsa.demo.springboot.component.CarDatabase;
 import com.elsa.demo.springboot.database.common.ModelTransformer;
+import com.elsa.demo.springboot.database.dao.DatabaseDao;
 import com.elsa.demo.springboot.database.repository.CarRepository;
 import com.elsa.demo.springboot.model.Car;
 import com.elsa.demo.springboot.services.CarService;
@@ -21,6 +22,8 @@ public class CarServiceImpl implements CarService {
 //	private CarDatabase carDatabase;
     @Autowired 
     private CarRepository carRepository;
+    @Autowired
+    private DatabaseDao databaseDao;
     
 	@Override
 	public Car addCar(Car car) {
@@ -132,6 +135,12 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public List<Car> getByName(String name) {
 		return getCarList((List<com.elsa.demo.springboot.database.entity.Car>) carRepository.findByName(name));
+	}
+
+	@Override
+	public List<Car> getListByCompanyAndYear(String company, Integer year) {
+		return getCarList((List<com.elsa.demo.springboot.database.entity.Car>) databaseDao.getListByCompanyAndYear(company,year));
+		
 	}
 	
 	

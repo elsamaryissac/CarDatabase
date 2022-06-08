@@ -101,6 +101,15 @@ public class CarController {
 		Car car = carService.get(company);
 		LOGGER.info("Car Company available is : "+car.getName());
 		return new ResponseEntity<Car>(car, car==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
+	}
+		
+		@GetMapping("/getbycompanyandyear/{company}/{year}")
+		public ResponseEntity<?> getbycompanyandyear(@PathVariable(required=true) String company,@PathVariable(required=true) Integer year){
+			List<Car> carList = carService.getListByCompanyAndYear(company, year);
+			//LOGGER.info("Car Company available is : "+car.getName());
+			return new ResponseEntity<List<Car>>(carList, carList==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
+			
+				
 		
 	}
 	
