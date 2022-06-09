@@ -6,6 +6,7 @@ public class Car {
 	private String name;
 	private String company;
 	private Integer year;
+	private Integer enginePower;
 	private String modified;
 	private Integer id;
 	private Date createdDate;
@@ -78,11 +79,21 @@ public class Car {
 		this.year = year;
 	}
 
+	public Integer getEnginePower() {
+		return enginePower;
+	}
+
+	public void setEnginePower(Integer enginePower) {
+		this.enginePower = enginePower;
+	}
+
 	@Override
 	public String toString() {
-		return "Car [name=" + name + ", company=" + company + ", year=" + year + ", modified=" + modified + ", id=" + id
-				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", active=" + active + "]";
+		return "Car [name=" + name + ", company=" + company + ", year=" + year + ", enginePower=" + enginePower
+				+ ", modified=" + modified + ", id=" + id + ", createdDate=" + createdDate + ", modifiedDate="
+				+ modifiedDate + ", active=" + active + "]";
 	}
+
 
 	
 

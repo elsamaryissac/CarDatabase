@@ -30,10 +30,20 @@ public class Car {
 	private Date modifiedDate;
 	@Column
 	private boolean active;
+	@Column(name="enginepower")
+	private Integer enginePower;
+	
 	@Override
 	public String toString() {
 		return "Car [id=" + id + ", name=" + name + ", company=" + company + ", year=" + year + ", modified=" + modified
-				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", active=" + active + "]";
+				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", active=" + active
+				+ ", enginePower=" + enginePower + "]";
+	}
+	public Integer getEnginePower() {
+		return enginePower;
+	}
+	public void setEnginePower(Integer enginePower) {
+		this.enginePower = enginePower;
 	}
 	public Integer getId() {
 		return id;

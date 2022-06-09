@@ -1,5 +1,6 @@
 package com.elsa.demo.springboot.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -108,9 +109,13 @@ public class CarController {
 			List<Car> carList = carService.getListByCompanyAndYear(company, year);
 			//LOGGER.info("Car Company available is : "+car.getName());
 			return new ResponseEntity<List<Car>>(carList, carList==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
-			
-				
+	}
 		
+		@GetMapping("/getbyenginepowerandyear/{enginePower}/{year}")
+		public ResponseEntity<?> getbyenginepowerandyear(@PathVariable(required=true) Integer enginePower,@PathVariable(required=true) Integer year){
+			List<Car> carList = carService.getListByEngPowGreaterThan1000AndYr(enginePower, year);
+			//LOGGER.info("Car Company available is : "+car.getName());
+			return new ResponseEntity<List<Car>>(carList, carList==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
 	}
 	
 }

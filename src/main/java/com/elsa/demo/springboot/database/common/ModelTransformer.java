@@ -13,6 +13,7 @@ public static Car toCarModel(com.elsa.demo.springboot.database.entity.Car car) {
 	newCar.setCompany(car.getCompany());
 	newCar.setModified(car.getModified());
 	newCar.setYear(car.getYear());
+	newCar.setEnginePower(car.getEnginePower());
 	newCar.setCreatedDate(car.getCreatedDate());
 	newCar.setModifiedDate(car.getModifiedDate());
 	newCar.setActive(car.isActive());
@@ -28,6 +29,7 @@ public static com.elsa.demo.springboot.database.entity.Car toCarEntity(Car car) 
 	newCar.setCompany(car.getCompany());
 	newCar.setModified(car.getModified());
 	newCar.setYear(car.getYear());
+	newCar.setEnginePower(car.getEnginePower());
 	newCar.setCreatedDate(car.getCreatedDate());
 	newCar.setModifiedDate(car.getModifiedDate());
 	newCar.setActive(car.isActive());

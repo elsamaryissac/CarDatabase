@@ -1,5 +1,6 @@
 package com.elsa.demo.springboot.services.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collector;
@@ -141,6 +142,12 @@ public class CarServiceImpl implements CarService {
 	public List<Car> getListByCompanyAndYear(String company, Integer year) {
 		return getCarList((List<com.elsa.demo.springboot.database.entity.Car>) databaseDao.getListByCompanyAndYear(company,year));
 		
+	}
+
+	@Override
+	public List<Car> getListByEngPowGreaterThan1000AndYr(Integer enginePower, Integer year) {
+		return getCarList((List<com.elsa.demo.springboot.database.entity.Car>) databaseDao.getListByEngPowGreaterThan1000AndYr(enginePower, year));
+		//return getCarList((List<com.elsa.demo.springboot.database.entity.Car>) carRepository.findByEnginePowerGreaterThan(enginePower, year));
 	}
 	
 	
