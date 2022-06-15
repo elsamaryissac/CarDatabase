@@ -16,5 +16,5 @@ public interface CarService {
 	public List<Car> getActiveCarsList();
 	public List<Car> getByName(String name);
 	public List<Car> getListByCompanyAndYear(String company, Integer year);
-	public List<Car> getListByEngPowGreaterThan1000AndYr(Integer enginePower, Integer year);
+	public List<Car> getListFilterEngPowAndYr(Integer enginePower, Integer year);
 }

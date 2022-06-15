@@ -113,7 +113,7 @@ public class CarController {
 		
 		@GetMapping("/getbyenginepowerandyear/{enginePower}/{year}")
 		public ResponseEntity<?> getbyenginepowerandyear(@PathVariable(required=true) Integer enginePower,@PathVariable(required=true) Integer year){
-			List<Car> carList = carService.getListByEngPowGreaterThan1000AndYr(enginePower, year);
+			List<Car> carList = carService.getListFilterEngPowAndYr(enginePower, year);
 			//LOGGER.info("Car Company available is : "+car.getName());
 			return new ResponseEntity<List<Car>>(carList, carList==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
 	}

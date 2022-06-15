@@ -145,7 +145,7 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public List<Car> getListByEngPowGreaterThan1000AndYr(Integer enginePower, Integer year) {
+	public List<Car> getListFilterEngPowAndYr(Integer enginePower, Integer year) {
 		return getCarList((List<com.elsa.demo.springboot.database.entity.Car>) databaseDao.getListByEngPowGreaterThan1000AndYr(enginePower, year));
 		//return getCarList((List<com.elsa.demo.springboot.database.entity.Car>) carRepository.findByEnginePowerGreaterThan(enginePower, year));
 	}
