@@ -60,4 +60,35 @@ public class CarControllerTest {
         assertTrue(responseEntity.getStatusCodeValue()==200);
         
 	}
+	
+	@Test
+	public void testUpdateCar() {
+		MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        
+        Car car = new Car();
+        car.setName("dzire");
+        when(carService.updateCar(org.mockito.ArgumentMatchers.any(Car.class))).thenReturn(car);
+        
+        ResponseEntity<Car> responseEntity = carController.update(car);
+     
+        assertTrue(responseEntity.getStatusCodeValue()==200);
+        
+	}
+	
+	@Test
+	public void testUpdateNewCar() {
+		MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        
+        Car car = new Car();
+        
+        car.setName("liva");
+        when(carService.updateCar(org.mockito.ArgumentMatchers.any(Car.class))).thenReturn(car);
+        
+        ResponseEntity<Car> responseEntity = carController.update(car);
+     
+        assertTrue(responseEntity.getStatusCodeValue()==200);
+        
+	}
 }

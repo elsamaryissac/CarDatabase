@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.elsa.demo.springboot.component.CarDatabase;
 import com.elsa.demo.springboot.model.Car;
+import com.elsa.demo.springboot.model.Owner;
 import com.elsa.demo.springboot.services.CarService;
+import com.elsa.demo.springboot.services.OwnerService;
 
 @RestController
 @RequestMapping(value = "service/car", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -29,6 +31,8 @@ public class CarController {
 	
 	@Autowired
 	private CarService carService;
+	@Autowired
+	private OwnerService ownerService;
 	
 	@PostMapping("/add")
 	public ResponseEntity<Car> add(@RequestBody Car car) {
@@ -117,5 +121,17 @@ public class CarController {
 			//LOGGER.info("Car Company available is : "+car.getName());
 			return new ResponseEntity<List<Car>>(carList, carList==null?HttpStatus.NO_CONTENT: HttpStatus.OK);
 	}
-	
+		
+		@PostMapping("/addowner")
+		public ResponseEntity<Owner> add(@RequestBody Owner owner) {
+			LOGGER.info("Owner added to the database.");
+			return new ResponseEntity<Owner>(ownerService.addOwner(owner), HttpStatus.OK);
+		}
+		@GetMapping("/getallowners")
+		public ResponseEntity<?> getAllOwners(){
+			LOGGER.info("Get all the owners!");
+			//return new ResponseEntity<>("List is updated!", HttpStatus.OK);
+			return new ResponseEntity<List<Owner>>(ownerService.getOwnerList(), HttpStatus.OK);
+			
+		}
 }
